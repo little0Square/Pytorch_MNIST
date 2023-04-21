@@ -97,33 +97,33 @@ if __name__ == "__main__":
     for epoch in range(1,n_epochs+1):
         train(epoch)
         test()
-    # '''============寻找错误图片并对比归一化前真实图片============================='''
-    # for x, y in data_loader_test:
-    #     output = model(x)
-    #     pred = output.data.max(1, keepdim=True)[1]  # dim为1寻找每一行的最大值，keepdim保持维度不变 shape（1000,1）
-    #     pre_ = np.array(pred).flatten()
-    #     target_ = np.array(y.data).flatten()
-    #     '''反归一化'''
-    #     x_data = x
-    #     for i in range(len(x)):
-    #         x_data[i] = x[i] * std + mean
-    #     '''识别错误图片的位置'''
-    #     error_ = []
-    #     for i in range(len(target_)):
-    #         if pre_[i] != target_[i]:
-    #             error_.append(i)
-    #     print(error_)
-    #     print("len :", len(error_))
-    #     '''显示错误图片'''
-    #     for i in range(0, len(error_) + 1):
-    #         if pre_[i] != target_[i]:
-    #             print(i, ":", pre_[i], "...", target_[i])
-    #             fig = plt.figure()
-    #             plt.subplot(1, 2, 1)  # 创建2行3列单个子图
-    #             plt.imshow(x[i][0], cmap='gray')
-    #             plt.title("False: {} -> Truth: {}".format(pre_[i], target_[i]))
-    #             plt.subplot(1, 2, 2)
-    #             plt.imshow(x_data[i][0], cmap='gray')
-    #             plt.xticks([])
-    #             plt.yticks([])
-    #             plt.show()
+    '''============寻找错误图片并对比归一化前真实图片============================='''
+    for x, y in data_loader_test:
+        output = model(x)
+        pred = output.data.max(1, keepdim=True)[1]  # dim为1寻找每一行的最大值，keepdim保持维度不变 shape（1000,1）
+        pre_ = np.array(pred).flatten()
+        target_ = np.array(y.data).flatten()
+        '''反归一化'''
+        x_data = x
+        for i in range(len(x)):
+            x_data[i] = x[i] * std + mean
+        '''识别错误图片的位置'''
+        error_ = []
+        for i in range(len(target_)):
+            if pre_[i] != target_[i]:
+                error_.append(i)
+        print(error_)
+        print("len :", len(error_))
+        '''显示错误图片'''
+        for i in range(0, len(error_) + 1):
+            if pre_[i] != target_[i]:
+                print(i, ":", pre_[i], "...", target_[i])
+                fig = plt.figure()
+                plt.subplot(1, 2, 1)  # 创建2行3列单个子图
+                plt.imshow(x[i][0], cmap='gray')
+                plt.title("False: {} -> Truth: {}".format(pre_[i], target_[i]))
+                plt.subplot(1, 2, 2)
+                plt.imshow(x_data[i][0], cmap='gray')
+                plt.xticks([])
+                plt.yticks([])
+                plt.show()

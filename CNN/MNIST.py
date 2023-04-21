@@ -149,8 +149,8 @@ if __name__ == "__main__":
  # continued_network.load_state_dict(network_state_dict)
  # optimizer_state_dict = torch.load('optimizer.pth')
  # continued_optimizer.load_state_dict(optimizer_state_dict)
-
- #  要识别的图片
+ #
+ #  # 要识别的图片
  # input_image = 'D:/实验MyProjet/backward/img/9.bmp'
  # im = Image.open(input_image).resize((28, 28))  # 取图片数据
  # im = im.convert('L')  # 灰度图
